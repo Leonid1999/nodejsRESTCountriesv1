@@ -32,7 +32,7 @@ var req = http.request(options, function (res) {
 			title: body[0].name,
 			message: body[0].capital,
 			area: body[0].area,
-			popu: body[0].population}
+			population: body[0].population}
         ));
         response.end();
 		console.log(bodystr.toString());

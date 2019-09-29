@@ -26,7 +26,6 @@ module.exports = {
         });
 
         let path = url.parse(request.url).pathname;
-
         switch (path) {
             case '/':
                 html.render('./index.html', response);
@@ -42,25 +41,14 @@ module.exports = {
                 response.end();
             }
         });
-
-        // read chunks of POST data
         request.on('data', chunk => {
             body += chunk.toString();
         });
-
-        // when complete POST data is received
         request.on('end', () => {
-            // use parse() method
             body = querystring.parse(body);
-
-            // { name: 'John', gender: 'MALE', email: 'john@gmail.com' }
-            //console.log(body);
             api.getCountry(response, body.name, body.capital);
-
-            // rest of the code
         });
              }
-                 //html.render('./about.html', response);
                 break;
             default:
                 response.writeHead(404);
